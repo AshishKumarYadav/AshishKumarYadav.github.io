@@ -287,17 +287,141 @@ footer strong { color: rgba(255,255,255,0.38); }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* hide hamburger on desktop */
+.hamburger { display: none; }
+.mobile-menu { display: none; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 920px) {
-  nav { padding: 14px 24px; }
+  /* NAV */
+  nav { padding: 14px 20px; }
   .nav-links { display: none; }
-  section { padding: 64px 24px; }
-  #hero { padding: 100px 24px 80px; }
-  .hero-stats { position: static; margin-top: 48px; }
-  .about-grid, .skills-grid, .hl-grid { grid-template-columns: 1fr; }
+
+  /* HERO */
+  #hero { padding: 90px 20px 60px; min-height: auto; }
+  .hero-stats {
+    position: static; margin-top: 40px;
+    display: flex; gap: 28px; flex-wrap: wrap;
+  }
+  .stat-num { font-size: 28px; }
+
+  /* SECTIONS */
+  section { padding: 56px 20px; }
+
+  /* ABOUT */
+  .about-grid { grid-template-columns: 1fr; gap: 36px; margin-top: 40px; }
   .about-cards { grid-template-columns: 1fr 1fr; }
-  .tl-item { gap: 0; }
-  .edu-card { flex-direction: column; text-align: center; }
+
+  /* SKILLS */
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; }
+
+  /* TIMELINE */
+  .timeline::before { left: 14px; }
+  .tl-left { width: 36px; }
+  .tl-dot { width: 16px; height: 16px; }
+  .job-card { padding: 22px 18px; }
+  .jc-top { flex-direction: column; gap: 8px; }
+  .jc-company { font-size: 17px; }
+
+  /* HIGHLIGHTS */
+  .hl-grid { grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+
+  /* EDUCATION */
+  .edu-card { flex-direction: column; text-align: center; padding: 28px 24px; }
+
+  /* CONTACT */
+  .contact-links { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 600px) {
+  /* NAV — hamburger */
+  nav { padding: 12px 18px; }
+  .nav-logo { font-size: 17px; }
+  .hamburger {
+    display: flex; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: rgba(255,255,255,0.75); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none; position: fixed; top: 52px; left: 0; right: 0;
+    background: rgba(10,15,30,0.97); backdrop-filter: blur(20px);
+    padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column; z-index: 99;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 16px; font-weight: 500; padding: 14px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s, background 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--blue-light); background: rgba(21,101,192,0.1); }
+
+  /* HERO */
+  #hero { padding: 80px 18px 48px; }
+  .hero-name { font-size: 38px; letter-spacing: -1.5px; }
+  .hero-role { font-size: 15px; }
+  .hero-desc { font-size: 14px; }
+  .hero-badge { font-size: 11.5px; padding: 5px 14px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn { width: 100%; justify-content: center; padding: 13px 20px; }
+  .hero-stats { gap: 24px; margin-top: 36px; }
+  .stat-num { font-size: 30px; }
+  .stat-label { font-size: 10px; }
+
+  /* SECTIONS */
+  section { padding: 48px 18px; }
+  .sec-title { font-size: 26px; letter-spacing: -0.8px; }
+  .sec-sub { font-size: 14px; }
+
+  /* ABOUT */
+  .about-grid { gap: 28px; margin-top: 32px; }
+  .about-text p { font-size: 14.5px; }
+  .about-cards { grid-template-columns: 1fr; gap: 10px; }
+  .about-card { padding: 14px 16px; }
+
+  /* SKILLS */
+  .skills-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+  .skill-card { padding: 20px; }
+  .tag { font-size: 11.5px; padding: 4px 10px; }
+
+  /* EXPERIENCE */
+  .timeline::before { display: none; }
+  .tl-left { display: none; }
+  .tl-item { padding-left: 0; margin-bottom: 20px; }
+  .job-card { padding: 20px 16px; border-radius: 12px; }
+  .jc-company { font-size: 16px; }
+  .jc-role { font-size: 12.5px; }
+  .jc-project { font-size: 12px; }
+  .jc-desc { font-size: 13px; }
+  .jc-bullets li { font-size: 13px; }
+  .pill { font-size: 10.5px; padding: 3px 8px; }
+
+  /* HIGHLIGHTS */
+  .hl-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+  .hl-card { padding: 22px 18px; }
+  .hl-icon { width: 50px; height: 50px; font-size: 24px; }
+  .hl-card h3 { font-size: 15px; }
+  .hl-card p { font-size: 13px; }
+
+  /* EDUCATION */
+  .edu-card { padding: 24px 20px; gap: 18px; }
+  .edu-degree { font-size: 17px; }
+
+  /* CONTACT */
+  .contact-links { gap: 10px; }
+  .c-link { width: 100%; justify-content: center; font-size: 13.5px; }
+  .contact-inner > p { font-size: 14px; }
+
+  /* FOOTER */
+  footer { padding: 20px 18px; font-size: 12px; }
 }
 </style>
 </head>
@@ -314,7 +438,18 @@ footer strong { color: rgba(255,255,255,0.38); }
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"       onclick="closeMenu()">About</a>
+  <a href="#skills"      onclick="closeMenu()">Skills</a>
+  <a href="#experience"  onclick="closeMenu()">Experience</a>
+  <a href="#highlights"  onclick="closeMenu()">Highlights</a>
+  <a href="#education"   onclick="closeMenu()">Education</a>
+  <a href="#contact"     onclick="closeMenu()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -605,7 +740,21 @@ const tio = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.tl-item').forEach(el => tio.observe(el));
 
-// Active nav
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+// Close menu on outside click
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+});
 const secs = document.querySelectorAll('section[id]');
 const links = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
